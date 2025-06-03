@@ -95,7 +95,7 @@ function setChatEnabled(enabled) {
 
 function startConversation() {
     if (socket && socket.connected) return;
-    socket = io('http://localhost:5000');
+    socket = io('https://websocket-first.onrender.com');
     socket.on('connect', () => {
         connection_status.textContent = 'Connected';
         connection_status.className = 'status-online';
