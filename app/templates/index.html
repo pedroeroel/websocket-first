@@ -1,0 +1,32 @@
+{% extends "model.html" %}
+
+{% block content %}
+    <div class="bg-white rounded-lg shadow-md w-[48%] max-w-xl flex flex-col overflow-hidden h-[80vh] max-h-[700px]">
+        <figure class="w-full">
+            <img class="w-full h-full object-contain"
+                src="https://img.freepik.com/vetores-premium/chatbot-rede-neural-ai-servidores-e-tecnologia-de-robos-cute-chatbot-ai-personagem_651808-563.jpg?semt=ais_hybrid&w=740"
+                alt="Chatbot">
+        </figure>
+        <div id="controls" class="w-full flex justify-around items-center p-4">
+            <button id="start-button"
+                class="px-5 py-2 bg-green-600 text-white rounded-full text-base transition-colors hover:bg-green-700">Start conversation</button>
+            <button id="end-button"
+                class="px-5 py-2 bg-red-600 text-white rounded-full text-base transition-colors hover:bg-red-700">End conversation</button>
+        </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-md w-[48%] max-w-xl flex flex-col overflow-hidden h-[80vh] max-h-[700px]">
+        <header class="bg-blue-600 text-white p-4 text-center border-b border-blue-800">
+            <h1 class="m-0 text-xl font-bold">Friendly Chatbot</h1>
+            <div id="connection-status" class="text-xs pt-1 text-red-300">Connecting...</div>
+        </header>
+        <div id="chat-box" class="flex-grow p-5 bg-gray-200 border-b border-gray-300 gap-2 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"></div>
+        <footer class="flex p-4 bg-white border-t border-gray-300">
+            <input type="text" id="message-input" placeholder="Type your message here..."
+                class="flex-grow px-4 py-2 border border-gray-300 rounded-full mr-2 text-base focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200">
+            <button id="send-button"
+                class="px-5 py-2 bg-blue-600 text-white rounded-full text-base transition-colors hover:bg-blue-800">Send</button>
+        </footer>
+    </div>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
