@@ -95,7 +95,10 @@ function setChatEnabled(enabled) {
 
 function startConversation() {
     if (socket && socket.connected) return;
-    socket = io('https://websocket-first.onrender.com');
+    socket = io('https://websocket-first.onrender.com', {
+        transports: ['websocket'],
+        upgrade: false
+    });
     socket.on('connect', () => {
         connection_status.textContent = 'Connected';
         connection_status.className = 'status-online';
@@ -110,7 +113,7 @@ function startConversation() {
     });
     socket.on('connection_status', (data) => {
         if (data.session_id) {
-            usersession_id = data.session_id;
+            session_id = data.session_id;
         }
     });
     socket.on('new_message', (data) => {
