@@ -1,32 +1,38 @@
 {% extends "model.html" %}
 
 {% block content %}
-    <div class="bg-white rounded-lg shadow-md w-[48%] max-w-xl flex flex-col overflow-hidden h-[80vh] max-h-[700px]">
-        <figure class="w-full">
-            <img class="w-full h-full object-contain"
-                src="https://img.freepik.com/vetores-premium/chatbot-rede-neural-ai-servidores-e-tecnologia-de-robos-cute-chatbot-ai-personagem_651808-563.jpg?semt=ais_hybrid&w=740"
-                alt="Chatbot">
-        </figure>
-        <div id="controls" class="w-full flex justify-around items-center p-4">
-            <button id="start-button"
-                class="px-5 py-2 bg-green-600 text-white rounded-full text-base transition-colors hover:bg-green-700">Start conversation</button>
-            <button id="end-button"
-                class="px-5 py-2 bg-red-600 text-white rounded-full text-base transition-colors hover:bg-red-700">End conversation</button>
+
+<aside class="h-full max-w-fit"></aside>
+<div class="bg-gray-800 shadow-md items-end flex">
+    <div id="controls" class="w-full flex flex-col gap-5 justify-around items-center p-4">
+        <button id="toggle-button"
+            class="px-5 py-2 border-2 border-green-700 bg-transparent text-green-700 rounded-full text-base transition-colors hover:bg-green-700 hover:text-gray-100 flex items-center justify-center"
+            title="Turn On">
+            <!-- Power Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 1 1-12.728 0M12 3v9"/>
+            </svg>
+        </button>
+    </div>
+</div>
+<div class="flex flex-col justify-between w-full">
+    <div id="chat-box" class="flex flex-col w-full overflow-y-auto p-5 bg-transparent gap-2 h-[70vh]" style="scrollbar-width: thin; scrollbar-color: #4B5563 #1F2937; ">
+        <div id="typing-indicator" class="flex order-last items-center gap-2 px-5 w-fit opacity-0">
+            <span class="text-gray-400 text-sm">Typing</span>
+            <span class="flex space-x-1">
+                <span class="block w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
+                <span class="block w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
+                <span class="block w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay:300ms"></span>
+            </span>
         </div>
     </div>
-    <div class="bg-white rounded-lg shadow-md w-[48%] max-w-xl flex flex-col overflow-hidden h-[80vh] max-h-[700px]">
-        <header class="bg-blue-600 text-white p-4 text-center border-b border-blue-800">
-            <h1 class="m-0 text-xl font-bold">Friendly Chatbot</h1>
-            <div id="connection-status" class="text-xs pt-1 text-red-300">Connecting...</div>
-        </header>
-        <div id="chat-box" class="flex-grow p-5 bg-gray-200 border-b border-gray-300 gap-2 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"></div>
-        <footer class="flex p-4 bg-white border-t border-gray-300">
-            <input type="text" id="message-input" placeholder="Type your message here..."
-                class="flex-grow px-4 py-2 border border-gray-300 rounded-full mr-2 text-base focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200">
-            <button id="send-button"
-                class="px-5 py-2 bg-blue-600 text-white rounded-full text-base transition-colors hover:bg-blue-800">Send</button>
-        </footer>
-    </div>
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <footer class="flex p-4 border-t border-gray-700">
+        <input type="text" id="message-input" placeholder="Type your message here..."
+        class="flex-grow px-4 py-2 border border-gray-700 rounded-full mr-2 text-base bg-gray-900 text-gray-100 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-900 placeholder-gray-400">
+        <button id="send-button"
+        class="px-5 py-2 rounded-full border-2 border-blue-600 text-gray-100 rounded-full text-base transition-colors hover:bg-blue-600">Send</button>
+    </footer>
+</div>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}
